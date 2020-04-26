@@ -1,8 +1,6 @@
 # NeoValine
 
-一个在 Valine 基础上修改的简单评论系统。
-
-A simple comment system modified on Valine. 
+一个基于 [Valine](https://github.com/xCss/Valine) 魔改的有人工审核再显示功能的评论系统。
 
 ---
 
