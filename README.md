@@ -13,3 +13,7 @@ A simple comment system modified on Valine.
 开发中...
 
 本人对 js 不是很熟悉。如果你对前端技术有一些了解，且有类似的需求，欢迎与我联系：[me@ohmysites.com](mailto:me@ohmysites.com)
+
+## 更多
+
+[我的博客：关于自建带有人工审核功能的评论系统的计划 ](https://www.ohmysites.com/archives/11/)
