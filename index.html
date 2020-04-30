@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="keywords" content="Valine,极简风,评论系统,极简风评论系统,comment system">
+    <meta name="description" content="Valine - 一款基于Leancloud的极简风评论系统">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,Chrome=1">
+    <title>Valine - A simple comment system based on Leancloud.</title>
+    <style>
+        * {
+            margin: 0 auto;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", 微软雅黑, "helvetica neue", helvetica, ubuntu, roboto, noto, "segoe ui", Arial, sans-serif;
+        }
+
+        body {
+            background-color: rgb(238, 238, 238);
+        }
+
+        header {
+            background: #fff;
+        }
+
+        a {
+            color: #999;
+            text-decoration: none;
+            border-bottom: 1px dotted #dedede;
+        }
+
+        .logo {
+            display: inline-block;
+            height: 60px;
+            font-size: 24px;
+            line-height: 60px;
+            color: #4285f4;
+            vertical-align: base-line;
+        }
+
+        .sub {
+            font-size: 12px;
+            color: #9c9c9c;
+            padding: 0 5px;
+        }
+
+        .market {
+            background-color: #4285f4;
+            height: 398px;
+            position: absolute;
+            top: 60px;
+            width: 100%;
+            outline: none;
+            display: block;
+            z-index: -1;
+        }
+
+        .container {
+            width: 80%;
+        }
+
+        .placeholder {
+            height: 56px;
+        }
+
+        @media screen and (max-width:720px) {
+            header {
+                text-align: center;
+            }
+            .sub {
+                display: block;
+                padding-bottom: 10px;
+            }
+            .container {
+                width: 100%;
+            }
+            .placeholder,
+            .market {
+                display: none;
+            }
+        }
+
+        .content {
+            background: #fff;
+            padding: 10px;
+        }
+
+        ul,
+        li {
+            list-style: none;
+        }
+
+        .prolist {
+            padding: 10px 20px 20px 20px;
+            font-weight: 400;
+            font-size: 16px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Mirages Custom', 'Merriweather', 'Open Sans', "Segoe UI", Roboto, "PingFang SC", "Microsoft Yahei", "WenQuanYi Micro Hei", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", Helvetica, Arial, sans-serif;
+            line-height: 1.5;
+        }
+
+        blockquote {
+            margin: 10px 0;
+            padding: 0 1em;
+            color: #6a737d;
+            border-left: 0.25em solid #dfe2e5;
+        }
+
+        #github {
+            padding: 20px 0;
+        }
+
+        .copy {
+            line-height: 60px;
+            text-align: center;
+            font-size: 14px;
+            color: #9c9c9c;
+        }
+    </style>
+    <script src="https://cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="./dist/Valine.min.js"></script>
+</head>
+
+<body>
+    <div class="market"></div>
+    <header>
+        <div class="container">
+            <a href="./" class="logo">Valine</a>
+            <span class="sub">A simple comment system based on Leancloud.</span>
+        </div>
+    </header>
+    <div class="container">
+        <div class="placeholder"></div>
+        <div class="content">
+            <div id="github">
+                <iframe allowtransparency="true" frameborder="0" scrolling="0" width="98" height="20"></iframe>
+                <iframe allowtransparency="true" frameborder="0" scrolling="0" width="156" height="20"></iframe>
+            </div>
+            <div class="comment"></div>
+        </div>
+    </div>
+    <div class="copy">
+        &copy; 2017 <a href="https://github.com/xCss" target="_blank">云淡风轻</a>
+    </div>
+    <script>
+        var valine = new Valine();
+        valine.init({
+            el: '.comment',
+            app_id: '3GiiCyXCrGbOIH3EelCfJ6yw-gzGzoHsz',
+            app_key: 'iuneD4hXPQImdHQSRE0aOcRF',
+            placeholder: 'ヾﾉ≧∀≦)o来啊，快活啊!',
+            path: window.location.pathname,
+            avatar:'mm', // 1.1.7 新增(mm/identicon/monsterid/wavatar/retro)
+            guest_info: ['nick', 'mail', 'link']
+        })
+
+        if (!/^http:\/\/localhost/.test(location.href)) {
+            var _hmt = _hmt || [];
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?fc2301b16d1a46c7899ef2b5afb651cc";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        }
+
+        window.onload = function() {
+            var iframes = document.querySelectorAll('iframe');
+            iframes[0].setAttribute('src', 'https://ghbtns.com/github-btn.html?user=xCss&repo=valine&type=watch&count=true');
+            iframes[1].setAttribute('src', 'https://ghbtns.com/github-btn.html?user=xCss&type=follow&count=true');
+        }
+    </script>
+</body>
+
+</html>
