@@ -697,7 +697,7 @@ ValineFactory.prototype.bind = function (option) {
             <div class="vh" rootid=${rt.rid || rt.id}>
                 <div class="vhead">${_nick} ${uaMeta}</div>
                 <div class="vmeta">
-                    <span class="vtime">${timeAgo(rt.ctime, root.locale)}</span>
+                    <span class="vtime">${timeAgo(new Date(rt.ctime), root.locale)}</span>
                     <span class="vat">${root.locale['ctrl']['reply']}</span>
                 </div>
                 <div class="vcontent">
@@ -806,6 +806,14 @@ ValineFactory.prototype.bind = function (option) {
             })
             return;
         }
+        if (defaultComment['nick'].length < 3) {
+            inputs['nick'].focus();
+            return;
+        }
+        if (defaultComment['mail'].length < 6 || defaultComment['mail'].indexOf('@') < 1 || defaultComment['mail'].indexOf('.') < 3) {
+            inputs['mail'].focus();
+            return;
+        }
         if (defaultComment['comment'] == '') {
             inputs['comment'].focus();
             return;
@@ -889,7 +897,15 @@ ValineFactory.prototype.bind = function (option) {
                             text: `评论已提交，站长审核后可见😃`,
                             ctxt: root.locale['ctrl']['ok']
                         })
+                    } else if (res.status == 400) {
+                        // 一般为邮箱或者链接格式错误
+                        root.alert.show({
+                            type: 0,
+                            text: `请检查您输入的网址邮箱等格式是否有误😃`,
+                            ctxt: root.locale['ctrl']['ok']
+                        })
                     } else {
+                        // 其他错误
                         root.alert.show({
                             type: 0,
                             text: `😑出错了！</br>错误类型：` + res.status.toString() + ` ` + res.statusText + `</br>请联系告知我这个错误，十分感谢😃</br>我的邮箱：me@ohmysites.com`,
