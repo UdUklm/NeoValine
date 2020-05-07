@@ -627,7 +627,6 @@ ValineFactory.prototype.bind = function (option) {
         fetch(APIURL+'?url='+decodeURI(root.config.path)+'&page='+page+'&page_size='+pageSize+'&ordering=ctime')
             .then(rets => rets.json())
             .then(retJsons => {
-                // let rids = []
                 let len = Object.keys(retJsons).length
                 for (let i = 0; i < len; i++) {
                     let retJson = retJsons[i];
