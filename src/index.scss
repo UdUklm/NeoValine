@@ -278,7 +278,7 @@
         border: 1px solid #ededed;
         border-radius: .3em;
         display: inline-block;
-        // background-color: transparent;
+        background-color: transparent;
         // background: #ededed;
         margin-bottom: 0;
         font-weight: 400;
@@ -298,7 +298,8 @@
     .vbtn:active,
     .vbtn:hover {
         color: #ff504d;
-        border-color: #ff504d;;
+        border-color: #ff504d;
+        background-color: transparent;
     }
     .vempty {
         padding: 1.25em;
@@ -508,8 +509,8 @@
         .vwrap{border-color:#b2b2b5;}
         .vicon{fill:#b2b2b5;}
         .vicon.actived{fill:#ff504d;}
-        .vbtn{color: #e1e1e1;border-color:#b2b2b5;
-            &:hover{color:#ff504d;border-color:#ff504d;}
+        .vbtn{color: #e1e1e1;border-color:#b2b2b5;background-color: transparent;
+            &:hover{color:#ff504d;border-color:#ff504d;background-color: transparent;}
         }
         a:hover{color: #ff504d;}
         .vcards .vcard .vcontent.expand{
@@ -526,8 +527,8 @@
         .vwrap{border-color:#b2b2b5;}
         .vicon{fill:#b2b2b5;}
         .vicon.actived{fill:#ff504d;}
-        .vbtn{color: #e1e1e1;border-color:#b2b2b5;
-            &:hover{color:#ff504d;border-color:#ff504d;}
+        .vbtn{color: #e1e1e1;border-color:#b2b2b5;background-color: transparent;
+            &:hover{color:#ff504d;border-color:#ff504d;background-color: transparent;}
         }
         a:hover{color: #ff504d;}
         .vcards .vcard .vcontent.expand{
