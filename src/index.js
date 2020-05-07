@@ -806,14 +806,6 @@ ValineFactory.prototype.bind = function (option) {
             })
             return;
         }
-        if (defaultComment['nick'].length < 3) {
-            inputs['nick'].focus();
-            return;
-        }
-        if (defaultComment['mail'].length < 6 || defaultComment['mail'].indexOf('@') < 1 || defaultComment['mail'].indexOf('.') < 3) {
-            inputs['mail'].focus();
-            return;
-        }
         if (defaultComment['comment'] == '') {
             inputs['comment'].focus();
             return;
@@ -901,7 +893,7 @@ ValineFactory.prototype.bind = function (option) {
                         // 一般为邮箱或者链接格式错误
                         root.alert.show({
                             type: 0,
-                            text: `请检查您输入的网址邮箱等格式是否有误😃`,
+                            text: `😑出错了！</br>请检查您输入的网址邮箱等格式是否有误~`,
                             ctxt: root.locale['ctrl']['ok']
                         })
                     } else {

@@ -30,7 +30,7 @@
         text-decoration:none;
         display:inline-block;
         &:hover {
-            color: #D7191A;
+            color: #ff504d;
         }
     }
     pre,code{
@@ -278,7 +278,8 @@
         border: 1px solid #ededed;
         border-radius: .3em;
         display: inline-block;
-        background: #ededed;
+        background-color: transparent;
+        // background: #ededed;
         margin-bottom: 0;
         font-weight: 400;
         vertical-align: middle;
@@ -296,9 +297,9 @@
     }
     .vbtn:active,
     .vbtn:hover {
-        color: #3090e4;
-        border-color: #3090e4;
-        background-color: #fff;
+        color: #ff504d;
+        border-color: #ff504d;
+        background-color:transparent;
     }
     .vempty {
         padding: 1.25em;
@@ -345,13 +346,12 @@
                     text-decoration:none;
                     display:inline-block;
                     &:hover {
-                        color: #D7191A;
+                        color: #ff504d;
                     }
                 }
                 .vsys {
                     display: inline-block;
                     padding: .2em .5em;
-                    background: #ededed;
                     color: #b3b1b1;
                     font-size: .75em;
                     border-radius: .2em;
@@ -378,7 +378,7 @@
                     position: relative;
                     .vat {
                         font-size: .8125em;
-                        color: #ef2f11;
+                        color: #ff504d;
                         cursor: pointer;
                         float:right;
                     }
@@ -499,4 +499,41 @@
         border-radius: 50%;
         animation: spin $spin-duration infinite linear;
     } 
+}
+
+[data-theme="dark"],.dark,.theme__dark,.night{
+    .v{
+        .vinput,.veditor,p,pre code,.status-bar{color: #e1e1e1;}
+        .vtime,.vsys{color: #929298;}
+        pre,code,pre code{color: #929298;background-color:#151414}
+        .vwrap{border-color:#b2b2b5;}
+        .vicon{fill:#b2b2b5;}
+        .vicon.actived{fill:#ff504d;}
+        .vbtn{color: #e1e1e1;border-color:#b2b2b5;background-color:transparent;
+            &:hover{color:#ff504d;border-color:#ff504d;background-color:transparent;}
+        }
+        a:hover{color: #ff504d;}
+        .vcards .vcard .vcontent.expand{
+            &::before{background:linear-gradient(180deg, rgba(0, 0, 0, .3), rgba(0, 0, 0, 0.7))}
+            &::after{background: rgba(0, 0, 0, 0.7)}
+        }
+    }
+}
+@media (prefers-color-scheme: dark) {
+    .v{
+        .vinput,.veditor,p,pre code,.status-bar{color: #e1e1e1;}
+        .vtime,.vsys{color: #929298;}
+        pre,code,pre code{color: #929298;background-color:#151414}
+        .vwrap{border-color:#b2b2b5;}
+        .vicon{fill:#b2b2b5;}
+        .vicon.actived{fill:#ff504d;}
+        .vbtn{color: #e1e1e1;border-color:#b2b2b5;background-color:transparent;
+            &:hover{color:#ff504d;border-color:#ff504d;background-color:transparent;}
+        }
+        a:hover{color: #ff504d;}
+        .vcards .vcard .vcontent.expand{
+            &::before{background:linear-gradient(180deg, rgba(0, 0, 0, .3), rgba(0, 0, 0, 0.7))}
+            &::after{background: rgba(0, 0, 0, 0.7)}
+        }
+    }
 }
