@@ -278,8 +278,7 @@
         border: 1px solid #ededed;
         border-radius: .3em;
         display: inline-block;
-        background-color: transparent;
-        // background: #ededed;
+        background: #ededed;
         margin-bottom: 0;
         font-weight: 400;
         vertical-align: middle;
@@ -299,7 +298,13 @@
     .vbtn:hover {
         color: #ff504d;
         border-color: #ff504d;
-        background-color: transparent;
+        background-color: #ededed;
+    }
+    .vsure .vbtn {
+        color: #e1e1e1;
+    }
+    .vcancel .vbtn {
+        color: #e1e1e1;
     }
     .vempty {
         padding: 1.25em;
@@ -501,39 +506,99 @@
     } 
 }
 
-[data-theme="dark"],.dark,.theme__dark,.night{
-    .v{
-        .vinput,.veditor,p,pre code,.status-bar{color: #e1e1e1;}
-        .vtime,.vsys{color: #929298;}
-        pre,code,pre code{color: #929298;background-color:#151414}
-        .vwrap{border-color:#b2b2b5;}
-        .vicon{fill:#b2b2b5;}
-        .vicon.actived{fill:#ff504d;}
-        .vbtn{color: #e1e1e1;border-color:#b2b2b5;background-color: transparent;
-            &:hover{color:#ff504d;border-color:#ff504d;background-color: transparent;}
+[data-theme="dark"],.dark,.theme__dark,.night {
+    .v {
+        .vinput,.veditor,p,pre code,.status-bar {
+            color: #e1e1e1;
         }
-        a:hover{color: #ff504d;}
-        .vcards .vcard .vcontent.expand{
-            &::before{background:linear-gradient(180deg, rgba(0, 0, 0, .3), rgba(0, 0, 0, 0.7))}
-            &::after{background: rgba(0, 0, 0, 0.7)}
+        .vtime,.vsys { 
+            color: #929298;
+        }
+        pre,code,pre code {
+            color: #929298;
+            background-color:#151414
+        }
+        .vwrap {
+            border-color:#b2b2b5;
+        }
+        .vicon{
+            fill:#b2b2b5;
+        }
+        .vicon.actived {
+            fill:#ff504d;
+        }
+        .vbtn {
+            color: #e1e1e1;
+            border-color:#b2b2b5;
+            background-color: #282828;
+
+            &:hover {
+                color:#ff504d;
+                border-color:#ff504d;
+                background-color: #282828;
+            }
+        }
+        a:hover { 
+            color: #ff504d;
+        }
+        .vmark {
+            background: #282828;
+        }
+        .vcards .vcard .vcontent.expand {
+            &::before {
+                background:linear-gradient(180deg, rgba(0, 0, 0, .3), rgba(0, 0, 0, 0.7))
+            }
+            &::after{
+                background: rgba(0, 0, 0, 0.7)
+            }
         }
     }
 }
 @media (prefers-color-scheme: dark) {
-    .v{
-        .vinput,.veditor,p,pre code,.status-bar{color: #e1e1e1;}
-        .vtime,.vsys{color: #929298;}
-        pre,code,pre code{color: #929298;background-color:#151414}
-        .vwrap{border-color:#b2b2b5;}
-        .vicon{fill:#b2b2b5;}
-        .vicon.actived{fill:#ff504d;}
-        .vbtn{color: #e1e1e1;border-color:#b2b2b5;background-color: transparent;
-            &:hover{color:#ff504d;border-color:#ff504d;background-color: transparent;}
+    .v {
+        .vinput,.veditor,p,pre code,.status-bar {
+            color: #e1e1e1;
         }
-        a:hover{color: #ff504d;}
-        .vcards .vcard .vcontent.expand{
-            &::before{background:linear-gradient(180deg, rgba(0, 0, 0, .3), rgba(0, 0, 0, 0.7))}
-            &::after{background: rgba(0, 0, 0, 0.7)}
+        .vtime,.vsys {
+            color: #929298;
+        }
+        pre,code,pre code {
+            color: #929298;
+            background-color:#151414
+        }
+        .vwrap {
+            border-color:#b2b2b5;
+        }
+        .vicon {
+            fill:#b2b2b5;
+        }
+        .vicon.actived {
+            fill:#ff504d;
+        }
+        .vbtn {
+            color: #e1e1e1;
+            border-color:#b2b2b5;
+            background-color: #282828;
+
+            &:hover {
+                color:#ff504d;
+                border-color:#ff504d;
+                background-color: #282828;
+            }
+        }
+        a:hover {
+            color: #ff504d;
+        }
+        .vmark {
+            background: #282828;
+        }
+        .vcards .vcard .vcontent.expand {
+            &::before {
+                background:linear-gradient(180deg, rgba(0, 0, 0, .3), rgba(0, 0, 0, 0.7))
+            }
+            &::after{
+                background: rgba(0, 0, 0, 0.7)
+            }
         }
     }
 }

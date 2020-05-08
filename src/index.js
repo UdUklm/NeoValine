@@ -23,7 +23,7 @@ const locales = {
         head: {
             nick: '昵称',
             mail: '邮箱',
-            link: '网址(http://)',
+            link: '博客(http://)',
         },
         tips: {
             comments: '评论',
@@ -152,7 +152,7 @@ ValineFactory.prototype._init = function(){
         lang && langMode && root.installLocale(lang, langMode);
         root.locale = root.locale || locales[lang || 'zh-cn'];
         root.notify = notify || true;
-        root.verify = verify || true;
+        root.verify = verify || false;
         _avatarSetting['params'] = `?d=${(ds.indexOf(avatar) > -1 ? avatar : 'mp')}&v=${VERSION}${force}`;
         _avatarSetting['hide'] = avatar === 'hide';
         _avatarSetting['cdn'] = /^https?\:\/\//.test(avatar_cdn) ? avatar_cdn : _avatarSetting['cdn']
@@ -277,19 +277,20 @@ ValineFactory.prototype._init = function(){
                 _mark.innerHTML = `<div class="valert txt-center"><div class="vtext">${o && o.text || 1}</div><div class="vbtns"></div></div>`;
                 let _vbtns = Utils.find(_mark, '.vbtns');
                 let _cBtn = `<button class="vcancel vbtn">${ o && o.ctxt || root.locale['ctrl']['cancel'] }</button>`;
-                let _oBtn = `<button class="vsure vbtn">${ o && o.otxt || root.locale['ctrl']['sure'] }</button>`;
-                _vbtns.innerHTML = `${_cBtn}${o && o.type && _oBtn}`;
+                // let _oBtn = `<button class="vsure vbtn">${ o && o.otxt || root.locale['ctrl']['sure'] }</button>`;
+                // _vbtns.innerHTML = `${_cBtn}${o && o.type && _oBtn}`;
+                _vbtns.innerHTML = `${_cBtn}`;
                 Utils.on('click', Utils.find(_mark, '.vcancel'), (e) => {
                     root.alert.hide();
                 })
                 Utils.attr(_mark, 'style', 'display:block;');
-                if (o && o.type) {
-                    let _ok = Utils.find(_mark, '.vsure');
-                    Utils.on('click', _ok, (e) => {
-                        root.alert.hide();
-                        o.cb && o.cb();
-                    });
-                }
+                // if (o && o.type) {
+                //     let _ok = Utils.find(_mark, '.vsure');
+                //     Utils.on('click', _ok, (e) => {
+                //         root.alert.hide();
+                //         o.cb && o.cb();
+                //     });
+                // }
                 return root;
             },
             hide() {
@@ -582,7 +583,7 @@ ValineFactory.prototype.bind = function (option) {
             inputs[_v] = _el;
             _el && Utils.on('input change blur', _el, (e) => {
                 if (_v === 'comment') syncContentEvt(_el)
-                else defaultComment[_v] = Utils.escape(_el.value.replace(/(^\s*)|(\s*$)/g, "")).substring(0,20);
+                else defaultComment[_v] = Utils.escape(_el.value.replace(/(^\s*)|(\s*$)/g, ""));
             });
         }
     }
@@ -627,11 +628,11 @@ ValineFactory.prototype.bind = function (option) {
         fetch(APIURL+'?url='+decodeURI(root.config.path)+'&page='+page+'&page_size='+pageSize+'&ordering=ctime')
             .then(rets => rets.json())
             .then(retJsons => {
-                let len = Object.keys(retJsons).length
+                let len = Object.keys(retJsons).length;
                 for (let i = 0; i < len; i++) {
                     let retJson = retJsons[i];
                     // rids.push(retJson.id)
-                    insertDom(retJson, Utils.find(root.el, '.vlist'), !0)
+                    insertDom(retJson, Utils.find(root.el, '.vlist'), !0);
                 }
                 // load children comment
                 fetch(CHILDAPIURL+'?url='+decodeURI(root.config.path)+'&ordering=ctime')
@@ -812,11 +813,12 @@ ValineFactory.prototype.bind = function (option) {
         defaultComment['nick'] = defaultComment['nick'] || '匿名';
 
         // return;
-        if (root.verify) {
-            verifyEvt(commitEvt)
-        } else {
-            commitEvt();
-        }
+        // if (root.verify) {
+        //     verifyEvt(commitEvt)
+        // } else {
+        //     commitEvt();
+        // }
+        commitEvt();
     }
 
     // get csrftoken
@@ -847,19 +849,12 @@ ValineFactory.prototype.bind = function (option) {
         }
         for (let i in defaultComment) {
             if (defaultComment.hasOwnProperty(i)) {
-                let _v = defaultComment[i];
-                comment[i] = _v;
+                comment[i] = defaultComment[i];
             }
         }
 
         // 检查 URL 格式
-        if (comment['link'] != '') {
-            if (comment['link'].substr(0,7).toLowerCase() == "http://" || comment['link'].substr(0,8).toLowerCase() == "https://") {
-
-            } else {
-                comment['link'] = "http://" + comment['link'];
-            }
-        }
+        comment['link'] = comment['link']?(/^https?\:\/\//.test(comment['link']) ? comment['link'] : 'http://'+comment['link']) : '';
 
         const csrftoken = getCookie('csrftoken')
         fetch(APIURL, {
