@@ -10,5 +10,5 @@
 
 ## 更多
 
-[关于自建带有人工审核功能的评论系统的计划](https://www.ohmysites.com/archives/11/)
-[NeoValine：一个基于 Valine 开发的支持人工审核的评论系统](https://www.ohmysites.com/archives/15/)
+- [关于自建带有人工审核功能的评论系统的计划](https://www.ohmysites.com/archives/11/)
+- [NeoValine：一个基于 Valine 开发的支持人工审核的评论系统](https://www.ohmysites.com/archives/15/)
