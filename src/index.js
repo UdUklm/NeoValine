@@ -635,7 +635,7 @@ ValineFactory.prototype.bind = function (option) {
                     insertDom(retJson, Utils.find(root.el, '.vlist'), !0);
                 }
                 // load children comment
-                fetch(CHILDAPIURL+'?url='+decodeURI(root.config.path)+'&ordering=ctime')
+                fetch(CHILDAPIURL+'?url='+decodeURI(root.config.path)+'&ordering=-ctime')
                     .then(retChilds => retChilds.json())
                     .then(retChildsJson => {
                         let childsLen = Object.keys(retChildsJson).length
