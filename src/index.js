@@ -894,7 +894,7 @@ ValineFactory.prototype.bind = function (option) {
                         // 其他错误
                         root.alert.show({
                             type: 0,
-                            text: `😑出错了！</br>错误类型：` + res.status.toString() + ` ` + res.statusText + `</br>请联系告知我这个错误，十分感谢😃</br>我的邮箱：me@ohmysites.com`,
+                            text: `😑出错了！</br>错误类型：` + res.status.toString() + ` ` + res.statusText + `</br>请联系告知我这个错误，十分感谢😃`,
                             ctxt: root.locale['ctrl']['ok']
                         })
                     }
