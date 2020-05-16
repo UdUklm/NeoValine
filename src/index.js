@@ -719,7 +719,7 @@ ValineFactory.prototype.bind = function (option) {
         if (mt) node.appendChild(_vcard);
         else node.insertBefore(_vcard, _vlis[0]);
         let _vcontent = Utils.find(_vcard, '.vcontent');
-        if (_vcontent) expandEvt(_vcontent);
+        // if (_vcontent) expandEvt(_vcontent);  // 不启用点击展开
         if (_vat) bindAtEvt(_vat, rt);
         _activeOtherFn()
     }
