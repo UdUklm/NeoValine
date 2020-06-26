@@ -8,7 +8,6 @@
 
 该项目有配套的后端程序：[https://github.com/UdUklm/NeoValineBackend](https://github.com/UdUklm/NeoValineBackend)
 
-## 更多
+## Doc
 
-- [关于自建带有人工审核功能的评论系统的计划](https://www.ohmysites.com/archives/11/)
 - [NeoValine：一个基于 Valine 开发的支持人工审核的评论系统](https://www.ohmysites.com/archives/15/)
