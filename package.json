@@ -35,7 +35,7 @@
     "exports-loader": "^0.6.3",
     "file-loader": "^0.11.2",
     "hanabi": "^0.4.0",
-    "marked": "^0.4.0",
+    "marked": "^1.1.1",
     "node-polyglot": "^2.4.0",
     "node-sass": "^4.14.0",
     "object-assign": "^4.1.1",
