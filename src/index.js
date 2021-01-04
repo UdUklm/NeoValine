@@ -625,7 +625,7 @@ ValineFactory.prototype.bind = function (option) {
         let pageSize = root.config.pageSize;
         let count = Number(Utils.find(root.el, '.vnum').innerText);
         root.loading.show();
-        fetch(APIURL+'?url='+decodeURI(root.config.path)+'&page='+page+'&page_size='+pageSize+'&ordering=ctime')
+        fetch(APIURL+'?url='+decodeURI(root.config.path)+'&page='+page+'&page_size='+pageSize+'&ordering=-ctime')
             .then(rets => rets.json())
             .then(retJsons => {
                 let len = Object.keys(retJsons).length;
@@ -709,7 +709,7 @@ ValineFactory.prototype.bind = function (option) {
         let _as = Utils.findAll(_vcard, 'a');
         for (let i = 0, len = _as.length; i < len; i++) {
             let _a = _as[i];
-            if (_a && (Utils.attr(_a, 'class') || '').indexOf('at') == -1) {
+            if (_a && (Utils.attr(_a, 'class') || '').indexOf('at') === -1) {
                 Utils.attr(_a, {
                     'target': '_blank',
                     'rel': 'nofollow'
