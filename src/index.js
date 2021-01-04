@@ -8,8 +8,8 @@ const Utils = require('./utils/domUtils');
 const Emoji = require('./plugins/emojis');
 const hanabi = require('hanabi');
 const fetch = require('node-fetch')
-const APIURL = '/api/comment/';
-const CHILDAPIURL = '/api/childcomment/';
+let APIURL = '/api/comment/';
+let CHILDAPIURL = '/api/childcomment/';
 const defaultComment = {
     comment: '',
     nick: '匿名',
@@ -27,9 +27,9 @@ const locales = {
         },
         tips: {
             comments: '评论',
-            sofa: '快来做第一个评论的人吧😃',
-            busy: '还在提交中，请稍候😅',
-            again: '这么简单也能错，也是没谁了🙄'
+            sofa: '快来做第一个评论的人吧 😃',
+            busy: '还在提交中，请稍候 😅',
+            again: '这么简单也能错，也是没谁了 🙄'
         },
         ctrl: {
             reply: '回复',
@@ -141,6 +141,7 @@ ValineFactory.prototype._init = function(){
             avatar_cdn,
             visitor,  // gravatar
             path = location.pathname,  // 调用 NeoValine 的文件的路径
+            serverURL,
             pageSize,
             // recordIP,
         } = root.config;
@@ -152,7 +153,10 @@ ValineFactory.prototype._init = function(){
         _avatarSetting['params'] = `?d=${(ds.indexOf(avatar) > -1 ? avatar : 'mp')}&v=${VERSION}${force}`;
         _avatarSetting['hide'] = avatar === 'hide';
         _avatarSetting['cdn'] = /^https?\:\/\//.test(avatar_cdn) ? avatar_cdn : _avatarSetting['cdn']
-
+        if (serverURL) {
+            APIURL = serverURL + APIURL;
+            CHILDAPIURL = serverURL + APIURL;
+        }
         let size = Number(pageSize || 10);
         root.config.pageSize = !isNaN(size) ? (size < 1 ? 10 : size) : 10;
 
