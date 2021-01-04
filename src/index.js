@@ -15,7 +15,7 @@ const defaultComment = {
     nick: '匿名',
     mail: '',
     link: '',
-    ua: navigator.userAgent,
+    // ua: navigator.userAgent,
     url: ''
 };
 const locales = {
@@ -139,18 +139,16 @@ ValineFactory.prototype._init = function(){
             avatar,
             avatarForce,
             avatar_cdn,
-            notify,
             visitor,  // gravatar
-            path = location.pathname,  // URL path
+            path = location.pathname,  // 调用 NeoValine 的文件的路径
             pageSize,
-            recordIP,
+            // recordIP,
         } = root.config;
         root['config']['path'] = path.replace(/index\.html?$/, '');
         let ds = _avatarSetting['ds'];
         let force = avatarForce ? '&q=' + Math.random().toString(32).substring(2) : '';
         lang && langMode && root.installLocale(lang, langMode);
         root.locale = root.locale || locales[lang || 'zh-cn'];
-        root.notify = notify || true;
         _avatarSetting['params'] = `?d=${(ds.indexOf(avatar) > -1 ? avatar : 'mp')}&v=${VERSION}${force}`;
         _avatarSetting['hide'] = avatar === 'hide';
         _avatarSetting['cdn'] = /^https?\:\/\//.test(avatar_cdn) ? avatar_cdn : _avatarSetting['cdn']
@@ -171,15 +169,15 @@ ValineFactory.prototype._init = function(){
         });
 
 
-        if (recordIP) {
-            let ipScript = Utils.create('script', 'src', '//api.ip.sb/jsonip?callback=getIP');
-            let s = document.getElementsByTagName("script")[0];
-            s.parentNode.insertBefore(ipScript, s);
-            // 获取IP
-            window.getIP = function (json) {
-                defaultComment['ip'] = json.ip;
-            }
-        }
+        // if (recordIP) {
+        //     let ipScript = Utils.create('script', 'src', '//api.ip.sb/jsonip?callback=getIP');
+        //     let s = document.getElementsByTagName("script")[0];
+        //     s.parentNode.insertBefore(ipScript, s);
+        //     // 获取IP
+        //     window.getIP = function (json) {
+        //         defaultComment['ip'] = json.ip;
+        //     }
+        // }
 
         // 获取在 post meta 显示的评论数
         let els = Utils.findAll(document, '.valine-comment-count');
@@ -679,21 +677,22 @@ ValineFactory.prototype.bind = function (option) {
             'id': rt.id
         });
         let _img = _avatarSetting['hide'] ? '' : `<img class="vimg" src="${_avatarSetting['cdn']+md5(rt.mail)+_avatarSetting['params']}">`;
-        let ua = rt.ua || '';
-        let uaMeta = '';
-        if (ua) {
-            ua = detect(ua);
-            let browser = `<span class="vsys">${ua.browser} ${ua.version}</span>`;
-            let os = `<span class="vsys">${ua.os} ${ua.osVersion}</span>`;
-            uaMeta = `${browser} ${os}`;
-        }
-        if(root.config.path === '*') uaMeta = `<a href="${rt.url}" class="vsys">${rt.url}</a>`
+        // let ua = rt.ua || '';
+        // let uaMeta = '';
+        // if (ua) {
+        //     ua = detect(ua);
+        //     let browser = `<span class="vsys">${ua.browser} ${ua.version}</span>`;
+        //     let os = `<span class="vsys">${ua.os} ${ua.osVersion}</span>`;
+        //     uaMeta = `${browser} ${os}`;
+        // }
+        // if(root.config.path === '*') uaMeta = `<a href="${rt.url}" class="vsys">${rt.url}</a>`
         let _nick = '';
         let _t = rt.link?(/^https?\:\/\//.test(rt.link) ? rt.link : 'http://'+rt.link) : '';
         _nick = _t ? `<a class="vnick" rel="nofollow" href="${_t}" target="_blank" >${rt.nick}</a>` : `<span class="vnick">${rt.nick}</span>`;
         _vcard.innerHTML = `${_img}
             <div class="vh" rootid=${rt.rid || rt.id}>
-                <div class="vhead">${_nick} ${uaMeta}</div>
+<!--                <div class="vhead">${_nick} ${uaMeta}</div>-->
+                <div class="vhead">${_nick}</div>
                 <div class="vmeta">
                     <span class="vtime">${timeAgo(new Date(rt.ctime), root.locale)}</span>
                     <span class="vat">${root.locale['ctrl']['reply']}</span>
@@ -872,21 +871,21 @@ ValineFactory.prototype.bind = function (option) {
                     if (res.ok) {
                         root.alert.show({
                             type: 0,
-                            text: `评论已提交，站长审核后可见😃`,
+                            text: `评论已提交，站长审核后可见 😃`,
                             ctxt: root.locale['ctrl']['ok']
                         })
                     } else if (res.status == 400) {
                         // 一般为邮箱或者链接格式错误
                         root.alert.show({
                             type: 0,
-                            text: `😑出错了！</br>请检查您输入的网址邮箱等格式是否有误~`,
+                            text: `😑 出错了！</br>请检查您输入的网址邮箱等格式是否有误~`,
                             ctxt: root.locale['ctrl']['ok']
                         })
                     } else {
                         // 其他错误
                         root.alert.show({
                             type: 0,
-                            text: `😑出错了！</br>错误类型：` + res.status.toString() + ` ` + res.statusText + `</br>请联系告知我这个错误，十分感谢😃`,
+                            text: `😑 出错了！</br>错误类型：` + res.status.toString() + ` ` + res.statusText + `</br>请联系告知我这个错误，十分感谢😃`,
                             ctxt: root.locale['ctrl']['ok']
                         })
                     }
