@@ -140,7 +140,6 @@ ValineFactory.prototype._init = function(){
             avatarForce,
             avatar_cdn,
             notify,
-            verify,  // 验证是人
             visitor,  // gravatar
             path = location.pathname,  // URL path
             pageSize,
@@ -152,7 +151,6 @@ ValineFactory.prototype._init = function(){
         lang && langMode && root.installLocale(lang, langMode);
         root.locale = root.locale || locales[lang || 'zh-cn'];
         root.notify = notify || true;
-        root.verify = verify || false;
         _avatarSetting['params'] = `?d=${(ds.indexOf(avatar) > -1 ? avatar : 'mp')}&v=${VERSION}${force}`;
         _avatarSetting['hide'] = avatar === 'hide';
         _avatarSetting['cdn'] = /^https?\:\/\//.test(avatar_cdn) ? avatar_cdn : _avatarSetting['cdn']
@@ -812,12 +810,6 @@ ValineFactory.prototype.bind = function (option) {
         }
         defaultComment['nick'] = defaultComment['nick'] || '匿名';
 
-        // return;
-        // if (root.verify) {
-        //     verifyEvt(commitEvt)
-        // } else {
-        //     commitEvt();
-        // }
         commitEvt();
     }
 
@@ -906,42 +898,6 @@ ValineFactory.prototype.bind = function (option) {
             root.ErrorHandler(ex,'commitEvt');
         })
     }
-
-    let verifyEvt = (fn) => {
-        let x = Math.floor((Math.random() * 10) + 1);
-        let y = Math.floor((Math.random() * 10) + 1);
-        let z = Math.floor((Math.random() * 10) + 1);
-        let opt = ['+', '-', 'x'];
-        let o1 = opt[Math.floor(Math.random() * 3)];
-        let o2 = opt[Math.floor(Math.random() * 3)];
-        let expre = `${x}${o1}${y}${o2}${z}`;
-        let subject = `${expre} = <input class='vcode vinput' >`;
-        root.alert.show({
-            type: 1,
-            text: subject,
-            ctxt: root.locale['ctrl']['cancel'],
-            otxt: root.locale['ctrl']['ok'],
-            cb() {
-                let code = +Utils.find(root.el, '.vcode').value;
-                let ret = (new Function(`return ${expre.replace(/x/g, '*')}`))();
-                if (ret === code) {
-                    fn && fn();
-                } else {
-                    root.alert.show({
-                        type: 1,
-                        text: `(T＿T)${root.locale['tips']['again']}`,
-                        ctxt: root.locale['ctrl']['cancel'],
-                        otxt: root.locale['ctrl']['try'],
-                        cb() {
-                            verifyEvt(fn);
-                            return;
-                        }
-                    })
-                }
-            }
-        })
-    }
-
 
     Utils.on('click', submitBtn, submitEvt);
     Utils.on('keydown', document, function (e) {
