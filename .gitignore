@@ -7,3 +7,4 @@ db.json
 node_modules/
 package-lock.json
 src/core
+dist
